@@ -10,3 +10,4 @@ pypdf
 uvicorn
 python-multipart
 langgraph
+pydantic
