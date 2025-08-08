@@ -1,4 +1,4 @@
-from fastapi import  APIRouter, UploadFile, File
+from fastapi import  APIRouter, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 import tempfile
 from pypdf import PdfReader
@@ -8,7 +8,7 @@ from utils import *
 router = APIRouter()
 
 @router.post('/result')
-async def get_result(JobDescription:str,file: UploadFile = File(...)):
+async def get_result(JobDescription: str = Form(...),file: UploadFile = File(...)):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         contents = await file.read()
         tmp.write(contents)
